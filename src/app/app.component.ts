@@ -10,6 +10,7 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
+  [x: string]: any;
   public animals: Animal[];
   public editAnimal: Animal | undefined;
   public deleteAnimal: Animal | undefined;
@@ -35,7 +36,7 @@ export class AppComponent implements OnInit {
   }
 
   public onAddAnimal(addForm: NgForm): void {
-    document.getElementById('add-animal-form').click();
+    document.getElementById('add-animal-form')!.click();
     this.animalService.addAnimal(addForm.value).subscribe(
       (response: Animal) => {
         console.log(response);
@@ -103,7 +104,7 @@ export class AppComponent implements OnInit {
       this.deleteAnimal = animal;
       button.setAttribute('data-target', '#deleteAnimalModal');
     }
-    container.appendChild(button);
+    container!.appendChild(button);
     button.click();
   }
 
